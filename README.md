@@ -58,7 +58,7 @@ Originally curated and published by the **U.S. National Institutes of Health (NI
 Clone the repository and navigate to the project directory:
  
 ```bash
-git clone https://github.com/YOUR_GITHUB_LINK_HERE
+git clone https://github.com/Purplegh/cpe487587HW
 cd CPE487587_SP26_Final_Project
 uv venv --python 3.12
 source .venv/bin/activate
