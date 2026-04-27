@@ -71,7 +71,17 @@ Install dependencies:
 ```bash
 uv pip install torch torchvision scikit-image matplotlib numpy pillow
 ```
- 
+
+
+ ## Data Directory Structure
+
+Before running the pipeline, ensure your dataset is organized as follows inside the `data/` folder at the root of the project directory:
+```
+data/
+├── train/        # 22,050 training images (.png)
+├── val/          # 2,754 validation images (.png)
+└── test/         # 2,754 test images (.png)
+```
 ---
  
 ## Running the Pipeline
