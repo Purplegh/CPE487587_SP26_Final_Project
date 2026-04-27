@@ -19,7 +19,7 @@ import matplotlib.gridspec as gridspec
 RUN = sys.argv[1] if len(sys.argv) > 1 else "1"
 print(f"Evaluating Run: {RUN}")
 
-BASE_DIR = "/home/zn0004/CPE487587_SP26_Final_Project"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 TEST_DIR = f"{BASE_DIR}/data/test"
 
 # ── Sharpness Metrics ──────────────────────────────────────────────────────────

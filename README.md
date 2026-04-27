@@ -69,7 +69,7 @@ uv build
 Install dependencies:
  
 ```bash
-uv pip install torch torchvision scikit-image matplotlib numpy pillow
+uv pip install torch torchvision scikit-image matplotlib numpy pillow onnxscript
 ```
 
 
@@ -101,7 +101,7 @@ This trains the convolutional autoencoder for each run and saves:
 - `weights/run{N}/encoder.onnx` — ONNX encoder 
 - `weights/run{N}/decoder.onnx` — ONNX decoder 
 - `results/run{N}/autoencoder_results.png` — original vs reconstructed figure
-- `logs/run{N}/autoencoder.log` — training loss log
+
 ### Step 2 — Train the GAN
  
 > **Note:** Run this only after the autoencoder for the corresponding run has finished training.
@@ -116,7 +116,7 @@ This loads the frozen autoencoder and trains the GAN generator for each run and 
 - `weights/run{N}/generator.pt` — trained GAN generator weights
 - `weights/run{N}/discriminator.pt` — trained GAN discriminator weights
 - `results/run{N}/gan_results.png` — original vs AE vs GAN figure
-- `logs/run{N}/gan.log` — training loss log
+
 ### Step 3 — Evaluate
  
 > **Note:** Run this only after both the autoencoder and GAN for the corresponding run have finished training.

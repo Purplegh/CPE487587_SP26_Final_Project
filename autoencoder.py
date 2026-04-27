@@ -27,7 +27,7 @@ torch.cuda.manual_seed_all(SEED)
 print(f"Run {RUN} | Seed {SEED}")
 
 # ── Paths ──────────────────────────────────────────────────────────────────────
-BASE_DIR    = "/home/zn0004/CPE487587_SP26_Final_Project"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 TRAIN_DIR   = f"{BASE_DIR}/data/train"
 TEST_DIR    = f"{BASE_DIR}/data/test"
 RESULTS_DIR = f"{BASE_DIR}/results/run{RUN}"
