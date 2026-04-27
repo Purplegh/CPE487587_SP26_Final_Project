@@ -1,0 +1,17 @@
+nohup: ignoring input
+Evaluating Run: 2
+Using device: cuda
+Test images: 2754
+Loaded /home/zn0004/CPE487587_SP26_Final_Project/weights/run2/autoencoder.pt
+Loaded /home/zn0004/CPE487587_SP26_Final_Project/weights/run2/generator.pt
+Running inference on test set...
+
+======================================================================
+Model                   PSNR (dB)       SSIM        VoL        TEN
+======================================================================
+Autoencoder               28.2157     0.9131     0.0179     0.3075
+GAN Enhanced              28.8952     0.9229     0.0186     0.3226
+======================================================================
+
+Saved metrics -> /home/zn0004/CPE487587_SP26_Final_Project/results/run2/metrics.txt
+Saved inference figure -> /home/zn0004/CPE487587_SP26_Final_Project/results/run2/inference_results.png

@@ -52,3 +52,82 @@ python -c "import tensorflow_datasets as tfds; tfds.load('malaria', download=Tru
 Originally curated and published by the **U.S. National Institutes of Health (NIH), National Library of Medicine (NLM)**.
 
 > NIH Official Page: https://lhncbc.nlm.nih.gov/LHC-research/LHC-projects/image-processing/malaria-datasheet.html
+
+## Setup
+ 
+Clone the repository and navigate to the project directory:
+ 
+```bash
+git clone https://github.com/YOUR_GITHUB_LINK_HERE
+cd CPE487587_SP26_Final_Project
+uv venv --python 3.12
+source .venv/bin/activate
+uv sync
+uv build
+```
+ 
+Install dependencies:
+ 
+```bash
+uv pip install torch torchvision scikit-image matplotlib numpy pillow
+```
+ 
+---
+ 
+## Running the Pipeline
+ 
+The pipeline consists of three scripts: `autoencoder.py`, `gan.py`, and `evaluate.py`. Each script accepts a run number (1, 2, or 3) corresponding to different random seeds for reproducibility. All three runs must be completed before generating the final summary.
+ 
+### Step 1 — Train the Autoencoder
+ 
+```bash
+nohup python autoencoder.py 1 > logs/run1_ae.out 2>&1 &
+nohup python autoencoder.py 2 > logs/run2_ae.out 2>&1 &
+nohup python autoencoder.py 3 > logs/run3_ae.out 2>&1 &
+```
+ 
+This trains the convolutional autoencoder for each run and saves:
+- `weights/run{N}/autoencoder.pt` — trained autoencoder weights
+- `weights/run{N}/encoder.onnx` — ONNX encoder 
+- `weights/run{N}/decoder.onnx` — ONNX decoder 
+- `results/run{N}/autoencoder_results.png` — original vs reconstructed figure
+- `logs/run{N}/autoencoder.log` — training loss log
+### Step 2 — Train the GAN
+ 
+> **Note:** Run this only after the autoencoder for the corresponding run has finished training.
+ 
+```bash
+nohup python gan.py 1 > logs/run1_gan.out 2>&1 &
+nohup python gan.py 2 > logs/run2_gan.out 2>&1 &
+nohup python gan.py 3 > logs/run3_gan.out 2>&1 &
+```
+ 
+This loads the frozen autoencoder and trains the GAN generator for each run and saves:
+- `weights/run{N}/generator.pt` — trained GAN generator weights
+- `weights/run{N}/discriminator.pt` — trained GAN discriminator weights
+- `results/run{N}/gan_results.png` — original vs AE vs GAN figure
+- `logs/run{N}/gan.log` — training loss log
+### Step 3 — Evaluate
+ 
+> **Note:** Run this only after both the autoencoder and GAN for the corresponding run have finished training.
+ 
+```bash
+nohup python evaluate.py 1 > logs/run1_eval.out 2>&1 &
+nohup python evaluate.py 2 > logs/run2_eval.out 2>&1 &
+nohup python evaluate.py 3 > logs/run3_eval.out 2>&1 &
+```
+ 
+This runs inference on the full test set and saves:
+- `results/run{N}/metrics.txt` — per-run PSNR, SSIM, VoL, TEN metrics
+- `results/run{N}/inference_results.png` — final inference figure
+### Step 4 — Generate Final Summary
+ 
+> **Note:** Run this only after all 3 runs of evaluate.py have completed.
+ 
+```bash
+python evaluate.py all
+```
+ 
+This reads `metrics.txt` from all three runs and prints the mean ± standard deviation across runs for all four metrics. The summary is saved to:
+- `results/summary.txt`
+---
