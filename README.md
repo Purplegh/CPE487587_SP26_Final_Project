@@ -91,9 +91,9 @@ The pipeline consists of three scripts: `autoencoder.py`, `gan.py`, and `evaluat
 ### Step 1 — Train the Autoencoder
  
 ```bash
-nohup python autoencoder.py 1 > logs/run1_ae.out 2>&1 &
-nohup python autoencoder.py 2 > logs/run2_ae.out 2>&1 &
-nohup python autoencoder.py 3 > logs/run3_ae.out 2>&1 &
+nohup python autoencoder.py 1 > run1_ae.out 2>&1 &
+nohup python autoencoder.py 2 > run2_ae.out 2>&1 &
+nohup python autoencoder.py 3 > run3_ae.out 2>&1 &
 ```
  
 This trains the convolutional autoencoder for each run and saves:
@@ -107,9 +107,9 @@ This trains the convolutional autoencoder for each run and saves:
 > **Note:** Run this only after the autoencoder for the corresponding run has finished training.
  
 ```bash
-nohup python gan.py 1 > logs/run1_gan.out 2>&1 &
-nohup python gan.py 2 > logs/run2_gan.out 2>&1 &
-nohup python gan.py 3 > logs/run3_gan.out 2>&1 &
+nohup python gan.py 1 > run1_gan.out 2>&1 &
+nohup python gan.py 2 > run2_gan.out 2>&1 &
+nohup python gan.py 3 > run3_gan.out 2>&1 &
 ```
  
 This loads the frozen autoencoder and trains the GAN generator for each run and saves:
@@ -122,9 +122,9 @@ This loads the frozen autoencoder and trains the GAN generator for each run and 
 > **Note:** Run this only after both the autoencoder and GAN for the corresponding run have finished training.
  
 ```bash
-nohup python evaluate.py 1 > logs/run1_eval.out 2>&1 &
-nohup python evaluate.py 2 > logs/run2_eval.out 2>&1 &
-nohup python evaluate.py 3 > logs/run3_eval.out 2>&1 &
+nohup python evaluate.py 1 > run1_eval.out 2>&1 &
+nohup python evaluate.py 2 > run2_eval.out 2>&1 &
+nohup python evaluate.py 3 > run3_eval.out 2>&1 &
 ```
  
 This runs inference on the full test set and saves:

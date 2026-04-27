@@ -7,7 +7,29 @@ authors = [
     { name = "Purplegh", email = "purplepurplegh@gmail.com" }
 ]
 requires-python = ">=3.12"
-dependencies = []
+
+
+
+
+dependencies = [
+    "torch>=2.0.0",
+    "torchvision",
+    "pillow",
+    "scikit-image",
+    "matplotlib",
+]
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu128" }
+torchvision = { index = "pytorch-cu128" }
+
+
+
+
 
 [tool.maturin]
 module-name = "cpe487587_sp26_final_project._core"
